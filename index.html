@@ -6,9 +6,38 @@
   <link href="/css/output.css" rel="stylesheet">
   <title>Base64 Encoder</title>
 </head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-</body>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-4">Base64 Encoder</h1>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="inputText">Text to encode:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="inputText" type="text" placeholder="Enter text...">
+      </div>
+      <div class="mt-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="encodedText">Encoded result:</label>
+        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="encodedText" rows="5" readonly></textarea>
+      </div>
+      <button id="copyButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4" type="button">Copy</button>
+    </div>
+    <script>
+      const inputText = document.getElementById('inputText');
+      const encodedText = document.getElementById('encodedText');
+      const copyButton = document.getElementById('copyButton');
+  
+      function encodeText() {
+        const input = inputText.value;
+        const encoded = btoa(unescape(encodeURIComponent(input)));
+        encodedText.value = encoded;
+      }
+  
+      inputText.addEventListener('input', encodeText);
+  
+      copyButton.addEventListener('click', () => {
+        encodedText.select();
+        encodedText.setSelectionRange(0, 99999); // For mobile devices
+        document.execCommand('copy');
+        alert('Encoded text copied to clipboard');
+      });
+    </script>
+  </body>
 </html>
