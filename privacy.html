@@ -8,39 +8,21 @@
 </head>
 
 <body>
- <!-- Navigation bar -->
- <nav class="bg-white shadow-lg">
-    <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
-            <a href="https://base64-encoder.com/" class="text-green-500 font-bold text-xl">
-                Base64 Encoder
-            </a>
-            <div class="main-menu hidden md:flex items-center space-x-4">
-                <a href="#" class="text-gray-600 hover:text-green-500">Home</a>
-                <a href="#" class="text-gray-600 hover:text-green-500">Features</a>
-                <a href="#" class="text-gray-600 hover:text-green-500">Pricing</a>
-                <a href="#" class="text-gray-600 hover:text-green-500">Contact</a>
-            </div>
-            <div class="mobile-menu md:hidden">
-                <button class="focus:outline-none" onclick="toggleMenu()">
-                    <div class="hamburger">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                </button>
-            </div>
-        </div>
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <a href="/"><span class="ml-3 text-xl">Base64 Encoder</span></a>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a href="/terms.html" class="mr-5 hover:text-gray-900">Terms and Conditions</a>
+        <a href="/privacy.html" class="mr-5 hover:text-gray-900">Privacy Policy</a>
+        <a href="/contact.html" class="mr-5 hover:text-gray-900">Contact</a>
+      </nav>
     </div>
-    <div id="mobile-menu-items" class="hidden bg-white shadow-lg absolute top-full w-full left-0 z-10">
-        <div class="container mx-auto px-4 py-4">
-            <a href="#" class="block text-gray-600 hover:text-green-500 mb-2">Home</a>
-            <a href="#" class="block text-gray-600 hover:text-green-500 mb-2">Features</a>
-            <a href="#" class="block text-gray-600 hover:text-green-500 mb-2">Pricing</a>
-            <a href="#" class="block text-gray-600 hover:text-green-500">Contact</a>
-        </div>
-    </div>
-</nav>
+  </header>
 
 <!-- Privacy Policy content -->
 <main class="container mx-auto px-4 py-8">
