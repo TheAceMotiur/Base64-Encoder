@@ -3,6 +3,7 @@
 import { useState, useRef, ChangeEvent } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import ShareButtons from "@/components/ShareButtons";
 
 export default function Home() {
   const [textInput, setTextInput] = useState("");
@@ -116,6 +117,11 @@ export default function Home() {
           <p className="text-sm sm:text-base opacity-80">
             Easily encode or decode text and images to/from Base64 format
           </p>
+          
+          {/* Add share buttons below the heading */}
+          <div className="mt-4 flex justify-center">
+            <ShareButtons />
+          </div>
         </div>
 
         <div className="mb-6">
