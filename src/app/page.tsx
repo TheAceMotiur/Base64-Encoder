@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, useRef, ChangeEvent, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import ShareButtons from "@/components/ShareButtons";
+import AdSense from "@/components/AdSense";
 
 export default function Home() {
   const [textInput, setTextInput] = useState("");
@@ -102,6 +103,18 @@ export default function Home() {
     "description": "Free online tool to encode and decode text and images to/from Base64 format"
   };
 
+  // Add error handling for AdSense
+  useEffect(() => {
+    // Handle any AdSense initialization errors
+    window.onerror = (message, source, lineno, colno, error) => {
+      if (source && source.includes('adsbygoogle')) {
+        console.log('AdSense error handled:', message);
+        return true; // Prevent default error handling
+      }
+      return false; // Let other errors propagate
+    };
+  }, []);
+
   // UI rendering
   return (
     <>
@@ -122,6 +135,16 @@ export default function Home() {
           <div className="mt-4 flex justify-center">
             <ShareButtons />
           </div>
+        </div>
+
+        {/* Add AdSense component above the tabs */}
+        <div className="my-4">
+          <AdSense 
+            adClient="ca-pub-9354746037074515"
+            adSlot="4878379783"
+            adFormat="auto"
+            fullWidthResponsive={true}
+          />
         </div>
 
         <div className="mb-6">
@@ -186,6 +209,16 @@ export default function Home() {
               >
                 Decode from Base64
               </button>
+            </div>
+
+            {/* Add another AdSense component in the middle of content */}
+            <div className="my-4">
+              <AdSense 
+                adClient="ca-pub-9354746037074515"
+                adSlot="4878379783"
+                adFormat="auto"
+                fullWidthResponsive={true}
+              />
             </div>
 
             <div>
@@ -306,6 +339,16 @@ export default function Home() {
               >
                 Preview Image
               </button>
+            </div>
+
+            {/* Add another AdSense component at the bottom of the image tab */}
+            <div className="mt-4">
+              <AdSense 
+                adClient="ca-pub-9354746037074515"
+                adSlot="4878379783"
+                adFormat="auto"
+                fullWidthResponsive={true}
+              />
             </div>
           </div>
         )}
