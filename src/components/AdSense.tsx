@@ -19,18 +19,38 @@ export default function AdSense({
   style = { display: "block" },
   className = "",
 }: AdSenseProps) {
-  // Fix: Change HTMLModElement to HTMLElement which is more appropriate for <ins> tag
-  const adRef = useRef<HTMLElement>(null);
+  const adRef = useRef<HTMLModElement>(null);
+  const isAdInitialized = useRef<boolean>(false);
 
   useEffect(() => {
+    // Only run this on the client side
+    if (typeof window === "undefined") return;
+    
+    // Don't initialize multiple times
+    if (isAdInitialized.current) return;
+
     try {
-      // Check if window and adsbygoogle exist
-      if (typeof window !== "undefined") {
-        // Ensure adsbygoogle array exists
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      // Add a safety check for adsbygoogle
+      if (window.adsbygoogle === undefined) {
+        window.adsbygoogle = [];
+      }
+      
+      // Mark as initialized to prevent multiple pushes
+      if (adRef.current) {
+        isAdInitialized.current = true;
+        
+        const adPushTimeout = setTimeout(() => {
+          try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (error) {
+            console.warn("AdSense push failed:", error);
+          }
+        }, 300);
+        
+        return () => clearTimeout(adPushTimeout);
       }
     } catch (error) {
-      console.error("AdSense error:", error);
+      console.warn("AdSense initialization error:", error);
     }
   }, []);
 

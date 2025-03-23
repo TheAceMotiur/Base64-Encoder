@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useRef, ChangeEvent, useEffect } from "react";
-import Head from "next/head";
 import Image from "next/image";
 import ShareButtons from "@/components/ShareButtons";
 import AdSense from "@/components/AdSense";
+import Script from "next/script";
 
 export default function Home() {
   const [textInput, setTextInput] = useState("");
@@ -87,43 +87,53 @@ export default function Home() {
     }
   };
 
-  // Add structured data for rich results
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Base64 Encoder/Decoder",
-    "url": "https://base64-encoder.com",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Web browser",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "description": "Free online tool to encode and decode text and images to/from Base64 format"
-  };
-
   // Add error handling for AdSense
   useEffect(() => {
-    // Handle any AdSense initialization errors
+    // Safely create global error handler
+    const originalOnError = window.onerror;
+    
     window.onerror = (message, source, lineno, colno, error) => {
+      // Handle AdSense specific errors
       if (source && source.includes('adsbygoogle')) {
         console.log('AdSense error handled:', message);
         return true; // Prevent default error handling
       }
+      
+      // Call original handler if it exists
+      if (originalOnError) {
+        return originalOnError(message, source, lineno, colno, error);
+      }
+      
       return false; // Let other errors propagate
+    };
+    
+    // Cleanup
+    return () => {
+      window.onerror = originalOnError;
     };
   }, []);
 
   // UI rendering
   return (
     <>
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </Head>
+      {/* Add structured data with Script component */}
+      <Script id="schema-structured-data" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Base64 Encoder/Decoder",
+          "url": "https://base64-encoder.com",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "Web browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "Free online tool to encode and decode text and images to/from Base64 format"
+        })}
+      </Script>
+      
       <div className="flex flex-col p-4 sm:p-6 max-w-7xl mx-auto">
         <div className="mb-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-2">Base64 Encoding & Decoding Tool</h2>
