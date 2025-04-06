@@ -1,7 +1,3 @@
 User-agent: *
 Allow: /
-
-# Disallow specific folders if needed
-# Disallow: /private/
-
 Sitemap: https://base64-encoder.com/sitemap.xml
