@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://base64-encoder.com/sitemap.xml
+
+# Disallow crawling of any sensitive files
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /src/
+
+# Allow all common crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

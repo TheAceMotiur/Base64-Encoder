@@ -1,0 +1,35 @@
+{
+  "name": "base64-encoder",
+  "version": "1.0.0",
+  "description": "Professional Base64 encoder and decoder web application - Base64-Encoder.com",
+  "keywords": ["base64", "encoder", "decoder", "vue", "tailwind", "tool", "web-app", "base64-encoder.com"],
+  "author": "Base64-Encoder.com",
+  "license": "MIT",
+  "homepage": "https://base64-encoder.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/base64-encoder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/base64-encoder/issues"
+  },
+  "private": false,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview --port 3000"
+  },
+  "dependencies": {
+    "vue": "^3.5.18"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.0.6",
+    "vite-plugin-vue-devtools": "^8.0.0"
+  }
+}
